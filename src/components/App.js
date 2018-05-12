@@ -12,8 +12,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
   mainContainer: {
-    //height: 'calc(100% - 56px)',
-    top: '56px',
+    height: 'calc(100% - 56px)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -44,7 +43,7 @@ class App extends Component {
     return (
       <div
         style={{
-          maxHeight: '100vh',
+          height: '100vh',
           display: 'flex',
           flexDirection: 'column'
         }}
@@ -65,13 +64,9 @@ class App extends Component {
               }
             />
           ))}
-          <TodoAddChangeDialog
-            open={this.state.todoDialogOpen}
-            mode={this.state.todoDialogMode}
-            todoId={this.state.currentTodo}
-            onClose={() => this.setState({ todoDialogOpen: false })}
-          />
+          <div style={{ width: '100%', minHeight: 64 }} />
         </div>
+
         <div className={this.props.classes.fab}>
           <Button
             variant="fab"
@@ -87,6 +82,12 @@ class App extends Component {
             <AddIcon />
           </Button>
         </div>
+        <TodoAddChangeDialog
+          open={this.state.todoDialogOpen}
+          mode={this.state.todoDialogMode}
+          todoId={this.state.currentTodo}
+          onClose={() => this.setState({ todoDialogOpen: false })}
+        />
       </div>
     );
   }
