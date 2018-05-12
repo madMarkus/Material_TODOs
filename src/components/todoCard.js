@@ -2,22 +2,26 @@ import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
 
+import { taskSet, tasksDeleteByTodo } from '../actions/tasksActions';
+import { todoDelete } from '../actions/todosActions';
+
 import ExpansionPanel, {
   ExpansionPanelSummary,
-  ExpansionPanelDetails
+  ExpansionPanelDetails,
+  ExpansionPanelActions
 } from 'material-ui/ExpansionPanel';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import TaskItem from './taskItem';
 import List from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/ModeEdit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
-  root: {
-    width: '100%'
-  },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightMedium
@@ -43,12 +47,29 @@ class TodoCard extends Component {
     this.props.onEdit();
   };
 
+  onAddClick = () => {
+    this.props.taskSet(Date.now(), {
+      name: '',
+      todoId: this.props.todoId,
+      done: false,
+      redacting: true
+    });
+  };
+
+  onDeleteClick = () => {
+    this.props.tasksDeleteByTodo(this.props.todoId);
+    this.props.todoDelete(this.props.todoId);
+  };
+
   render() {
     return (
       <ExpansionPanel
         style={{
           width: '100%',
-          margin: `0px 0px ${this.state.expanded ? '8px' : '0px'} 0px`
+          maxWidth: 600,
+          margin: `${this.state.expanded ? '4px' : '0px'} 0px ${
+            this.state.expanded ? '4px' : '0px'
+          } 0px`
         }}
         expanded={this.state.expanded}
         onChange={this.onExpandedChange}
@@ -70,17 +91,9 @@ class TodoCard extends Component {
                 {this.state.expanded && this.props.todoObject.subheader}
               </Typography>
             </div>
-            {this.state.expanded && (
-              <IconButton
-                onClick={this.onEditClick}
-                style={{ width: 24, height: 24 }}
-              >
-                <EditIcon />
-              </IconButton>
-            )}
           </div>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails style={{ padding: '0px 0px 8px 8px' }}>
+        <ExpansionPanelDetails style={{ padding: '0px 16px 8px 8px' }}>
           <List style={{ padding: 0, width: '100%' }}>
             {Object.keys(this.props.tasksList)
               .filter(
@@ -89,6 +102,27 @@ class TodoCard extends Component {
               .map(key => <TaskItem key={key} taskId={key} />)}
           </List>
         </ExpansionPanelDetails>
+        <Divider />
+        <ExpansionPanelActions style={{ padding: '8px 20px 8px 16px' }}>
+          <IconButton
+            onClick={this.onAddClick}
+            style={{ width: 24, height: 24 }}
+          >
+            <AddIcon />
+          </IconButton>
+          <IconButton
+            onClick={this.onEditClick}
+            style={{ width: 24, height: 24, marginLeft: 16 }}
+          >
+            <EditIcon />
+          </IconButton>
+          <IconButton
+            onClick={this.onDeleteClick}
+            style={{ width: 24, height: 24, marginLeft: 16 }}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </ExpansionPanelActions>
       </ExpansionPanel>
     );
   }
@@ -99,4 +133,8 @@ const mapStateToProps = (state, ownProps) => ({
   tasksList: state.tasks
 });
 
-export default connect(mapStateToProps, null)(withStyles(styles)(TodoCard));
+export default connect(mapStateToProps, {
+  taskSet,
+  tasksDeleteByTodo,
+  todoDelete
+})(withStyles(styles)(TodoCard));
