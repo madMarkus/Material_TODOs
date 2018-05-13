@@ -1,7 +1,5 @@
-export const todoSet = (todoId, todoObject) => ({
-  type: 'TODO_SET',
-  todoId,
-  todoObject
-});
+export const todoAdd = todoObject => ({ type: 'TODO_ADD', todoObject });
 
-export const todoDelete = todoId => ({ type: 'TODO_DELETE', todoId });
+export const todoDelete = id => ({ type: 'TODO_DELETE', id });
+
+export const todoCheck = id => ({ type: 'TODO_CHECK', id });

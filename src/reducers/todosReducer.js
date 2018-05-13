@@ -1,29 +1,26 @@
-const todosList = (
-  state = {
-    exampleTODO1: {
-      header: 'Groceries',
-      subheader: 'For tommorow'
-    },
-    exampleTODO2: {
-      header: 'House stuff',
-      subheader: 'Untill 16:00'
-    },
-    exampleTODO3: {
-      header: 'Hometasks',
-      subheader: ''
-    }
-  },
+const tasksList = (
+  state = [
+    { id: 0, name: 'Buy bread', done: true },
+    { id: 1, name: 'Buy eggs', done: false },
+    { id: 2, name: 'Make dinner', done: false },
+    { id: 3, name: 'Do work', done: false }
+  ],
   action
 ) => {
   switch (action.type) {
-    case 'TODO_SET': {
-      return { ...state, [action.todoId]: action.todoObject };
+    case 'TODO_ADD': {
+      return [action.todoObject, ...state];
     }
 
     case 'TODO_DELETE': {
-      const newState = { ...state };
-      delete newState[action.todoId];
-      return newState;
+      return state.filter(value => value.id !== action.id);
+    }
+
+    case 'TODO_CHECK': {
+      return state.map(
+        value =>
+          value.id === action.id ? { ...value, done: !value.done } : value
+      );
     }
 
     default:
@@ -31,4 +28,4 @@ const todosList = (
   }
 };
 
-export default todosList;
+export default tasksList;

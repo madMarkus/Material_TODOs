@@ -1,8 +1,6 @@
-import { combineReducers } from "redux";
-import todosReducer from "./todosReducer";
-import taskReducer from "./tasksReducer";
+import { combineReducers } from 'redux';
+import todosReducer from './todosReducer';
 
 export default combineReducers({
-  todos: todosReducer,
-  tasks: taskReducer
+  todos: todosReducer
 });
