@@ -1,17 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./components/App";
-import CssBaseline from "material-ui/CssBaseline";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import store from "./store";
-import { Provider } from "react-redux";
+import RootContainer from './containers/RootContainer';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <React.Fragment>
-      <CssBaseline />
-      <App />
-    </React.Fragment>
-  </Provider>,
-  document.getElementById("app")
-);
+ReactDOM.render(<RootContainer />, document.getElementById('app'));
