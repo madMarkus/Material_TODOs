@@ -1,52 +1,51 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
 
 import {
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText
-} from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
+  CheckBoxBlankIcon,
+  CheckBoxMarkedIcon,
+  CloseIcon
+} from '../assets/svg';
 
-import IconButton from 'material-ui/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import './components.css';
 
 class TodoListItem extends React.Component {
   render() {
     return (
-      <div>
-        <ListItem
-          divider
-          style={{
-            backgroundColor: `${this.props.todo.done ? '#e0e0e0' : '#fff'}`
-          }}
-          button
-          onClick={this.props.onToggle}
-        >
-          <ListItemText primary={this.props.todo.name} />
+      <div
+        className={`TodoListItem-Wrapper ${
+          this.props.todo.done ? 'done' : 'undone'
+        }`}
+        onClick={this.props.onToggle}
+      >
+        <div className="TodoListItem-NameBlock">{this.props.todo.name}</div>
 
-          <ListItemSecondaryAction>
-            <div>
-              <Checkbox
-                style={{ width: 24 }}
-                checked={this.props.todo.done}
-                disableRipple
-                onClick={this.props.onToggle}
-              />
+        <div className="TodoListItem-InputArea">
+          <div
+            className="TodoListItem-Input"
+            onClick={event => {
+              event.stopPropagation();
+              event.preventDefault();
+              this.props.onToggle();
+            }}
+          >
+            {this.props.todo.done ? (
+              <CheckBoxMarkedIcon />
+            ) : (
+              <CheckBoxBlankIcon />
+            )}
+          </div>
 
-              <IconButton
-                onClick={event => {
-                  event.stopPropagation();
-                  event.preventDefault();
-                  this.props.onDeleteClick();
-                }}
-                style={{ width: 24, height: 24, marginLeft: 16 }}
-              >
-                <CloseIcon />
-              </IconButton>
-            </div>
-          </ListItemSecondaryAction>
-        </ListItem>
+          <div
+            className="TodoListItem-Input"
+            onClick={event => {
+              event.stopPropagation();
+              event.preventDefault();
+              this.props.onDeleteClick();
+            }}
+          >
+            <CloseIcon />
+          </div>
+        </div>
       </div>
     );
   }

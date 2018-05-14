@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import { todoCheck, todoDelete } from '../actions/todosActions';
 
-import AppBar from '../components/appBar';
-import List from 'material-ui/List';
 import TodoListItem from '../components/todoListItem';
 
 class TodoListContainer extends Component {
@@ -18,13 +16,7 @@ class TodoListContainer extends Component {
 
   render() {
     return (
-      <List
-        style={{
-          width: '100%',
-          maxWidth: 600,
-          padding: '4px 0px 0px 0px'
-        }}
-      >
+      <div className="TodoList-Wrapper">
         {this.props.todos.map(todoObject => (
           <TodoListItem
             key={todoObject.id}
@@ -33,7 +25,7 @@ class TodoListContainer extends Component {
             onToggle={() => this.todoToggle(todoObject.id)}
           />
         ))}
-      </List>
+      </div>
     );
   }
 }

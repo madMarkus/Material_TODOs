@@ -3,22 +3,22 @@ import React, { Component } from 'react';
 import AppBar from '../components/appBar';
 import TodoListContainer from './TodoListContainer';
 
+import './containers.css';
+
 class MainContainer extends Component {
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <div>
-          <AppBar />
-        </div>
+      <div className="Main-Wrapper">
+        <AppBar />
+
         <div
-          style={{
-            display: 'flex',
-            flexGrow: 1,
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: '0px 8px 8px 8px',
-            overflow: 'auto'
-          }}
+          className="Page-Content-Wrapper"
+          // style={{
+          //   display: 'flex',
+          //   justifyContent: 'center',
+          //   padding: '0px 8px 8px 8px',
+          //   overflow: 'auto'
+          // }}
         >
           <TodoListContainer />
         </div>

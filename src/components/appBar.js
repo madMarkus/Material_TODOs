@@ -7,6 +7,8 @@ import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 
+import './components.css';
+
 class CustomAppBar extends Component {
   onKeyPressHandler = event => {
     if (event.key === 'Enter' && event.target.value !== '') {
@@ -21,19 +23,29 @@ class CustomAppBar extends Component {
 
   render() {
     return (
-      <AppBar style={{ padding: 8 }} position="static" color="primary">
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Paper style={{ padding: 4, width: '100%', maxWidth: 700 }}>
-            <TextField
-              margin="none"
-              fullWidth
-              placeholder="Enter new TODO"
-              onKeyPress={this.onKeyPressHandler}
-              autoFocus
-            />
-          </Paper>
+      <div className="AppBar-Root">
+        <div
+          className="AppBar-TextField-Wrapper"
+          // style={{
+          //   display: 'flex',
+          //   boxShadow:
+          //     '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+          //   padding: '4px 8px 4px 8px',
+          //   maxWidth: 700,
+          //   backgroundColor: '#fff',
+          //   width: '100%',
+          //   borderRadius: 2
+          // }}
+        >
+          <TextField
+            margin="none"
+            fullWidth
+            placeholder="Enter new TODO"
+            onKeyPress={this.onKeyPressHandler}
+            autoFocus
+          />
         </div>
-      </AppBar>
+      </div>
     );
   }
 }
