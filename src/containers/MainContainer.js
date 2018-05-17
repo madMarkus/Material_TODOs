@@ -11,15 +11,7 @@ class MainContainer extends Component {
       <div className="Main-Wrapper">
         <AppBar />
 
-        <div
-          className="Page-Content-Wrapper"
-          // style={{
-          //   display: 'flex',
-          //   justifyContent: 'center',
-          //   padding: '0px 8px 8px 8px',
-          //   overflow: 'auto'
-          // }}
-        >
+        <div className="Page-Content-Wrapper">
           <TodoListContainer />
         </div>
       </div>
