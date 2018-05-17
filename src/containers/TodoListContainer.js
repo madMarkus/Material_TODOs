@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -5,7 +7,14 @@ import { todoCheck, todoDelete } from '../actions/todosActions';
 
 import TodoListItem from '../components/todoListItem';
 
-class TodoListContainer extends Component {
+type Props = {
+  todoDelete: number => { type: string, id: number },
+  todoCheck: number => { type: string, id: number },
+
+  todos: Array<{ id: number, name: string, done: boolean }>
+};
+
+class TodoListContainer extends Component<Props> {
   todoDelete = id => {
     this.props.todoDelete(id);
   };
@@ -21,8 +30,8 @@ class TodoListContainer extends Component {
           <TodoListItem
             key={todoObject.id}
             todo={todoObject}
-            onDeleteClick={() => this.todoDelete(todoObject.id)}
-            onToggle={() => this.todoToggle(todoObject.id)}
+            onDeleteClick={this.todoDelete}
+            onToggle={this.todoToggle}
           />
         ))}
       </div>

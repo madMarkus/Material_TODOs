@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 
 import {
@@ -8,14 +10,24 @@ import {
 
 import './components.css';
 
-class TodoListItem extends React.Component {
+type Props = {
+  todo: {
+    id: number,
+    name: string,
+    done: boolean
+  },
+  onToggle: number => void,
+  onDeleteClick: number => void
+};
+
+class TodoListItem extends React.Component<Props> {
   render() {
     return (
       <div
         className={`TodoListItem-Wrapper ${
           this.props.todo.done ? 'done' : 'undone'
         }`}
-        onClick={this.props.onToggle}
+        onClick={() => this.props.onToggle(this.props.todo.id)}
       >
         <div className="TodoListItem-NameBlock">{this.props.todo.name}</div>
 
@@ -25,7 +37,7 @@ class TodoListItem extends React.Component {
             onClick={event => {
               event.stopPropagation();
               event.preventDefault();
-              this.props.onToggle();
+              this.props.onToggle(this.props.todo.id);
             }}
           >
             {this.props.todo.done ? (
@@ -40,7 +52,7 @@ class TodoListItem extends React.Component {
             onClick={event => {
               event.stopPropagation();
               event.preventDefault();
-              this.props.onDeleteClick();
+              this.props.onDeleteClick(this.props.todo.id);
             }}
           >
             <CloseIcon />
