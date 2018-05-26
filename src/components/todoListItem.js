@@ -21,6 +21,10 @@ type Props = {
 };
 
 class TodoListItem extends React.Component<Props> {
+  shouldComponentUpdate(nextProps: Object) {
+    return this.props.todo.done !== nextProps.todo.done;
+  }
+
   render() {
     return (
       <div
