@@ -1,0 +1,21 @@
+* {
+  font-family: Roboto, 'Noto Sans CJK JP', sans-serif;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./Roboto-Regular.woff') format('woff'),
+    url('./Roboto-Regular.woff2') format('woff2'),
+    url('./Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./Roboto-Medium.woff') format('woff'),
+    url('./Roboto-Medium.woff2') format('woff2'),
+    url('./Roboto-Medium.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}

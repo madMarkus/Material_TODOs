@@ -29,7 +29,6 @@
   padding: 8px;
   min-height: 48px;
   align-content: center;
-  font-family: inherit;
   margin-bottom: 2px;
   border-radius: 2px;
 }
@@ -46,7 +45,6 @@
 
 .TodoListItem-NameBlock {
   display: flex;
-  font-family: inherit;
   align-items: center;
   padding: 4px 0px 4px 8px;
   flex-grow: 1;
