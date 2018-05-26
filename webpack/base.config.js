@@ -3,8 +3,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'none',
-
   entry: path.join(__dirname + '/../src/index.js'),
 
   module: {
@@ -13,12 +11,15 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ['file-loader?name=fonts/[name].[ext]']
       }
     ]
   },
 
   plugins: [
-    new webpack.EnvironmentPlugin(['NODE_ENV']),
     new HtmlWebpackPlugin({
       template: path.join(__dirname + '/../src/index.html')
     })
